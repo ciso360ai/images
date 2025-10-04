@@ -26,7 +26,7 @@ This information will help us triage your report more quickly.
 
 We value the members of the independent security research community who find security vulnerabilities and work
 with our team so that proper fixes can be issued to users. Our policy is to credit all researchers in the fix's release
-notes. In order to receive credit, security researchers must follow responsible disclosure practices and the our policy for [Coordinated Vulnerability Disclosure](https://ciso360.ai/security-policy/).
+notes. In order to receive credit, security researchers must follow responsible disclosure practices and our policy for [Coordinated Vulnerability Disclosure](https://ciso360.ai/security-policy/).
 
 ## Preferred Languages
 
