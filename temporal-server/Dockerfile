@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.22
 ARG TEMPORAL_VERSION=1.29.0
 
 # Temporal source for build metadata
-FROM --platform=$BUILDPLATFORM temporalio/auto-setup:${TEMPORAL_VERSION} AS temporal-source
+FROM --platform=$TARGETPLATFORM temporalio/auto-setup:${TEMPORAL_VERSION} AS temporal-source
 
 # Base image
 FROM alpine:${ALPINE_VERSION}
@@ -49,4 +49,4 @@ EXPOSE 6933 6934 6935 6939 7233 7234 7235 7239
 HEALTHCHECK --interval=60s --timeout=10s --start-period=60s --retries=3 \
     CMD temporal operator cluster health || exit 1
 
-ENTRYPOINT ["/sbin/tini", "--", "/etc/temporal/entrypoint.sh"]
+ENTRYPOINT ["/etc/temporal/start-temporal.sh"]
