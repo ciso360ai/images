@@ -1,12 +1,17 @@
 ARG TEMPORALUI_VERSION=2.40.1
 
-# Temporal UI source
-FROM --platform=$BUILDPLATFORM temporalio/ui:${TEMPORALUI_VERSION} AS temporal-ui-source
+# Use Temporal UI as base image (proper platform targeting)
+FROM temporalio/ui:${TEMPORALUI_VERSION}
 
 LABEL \
     name="CISO360AI Temporal UI" \
     author="CISO360AI <office@CISO360.AI>" \
     description="Your All-round Cyber-Intelligent Sidekick"
+
+# Set environment variables
+ENV TEMPORAL_UI_PORT=8081
+# Expose the default port
+EXPOSE 8081
 
 # Health check
 HEALTHCHECK --interval=60s --timeout=10s --start-period=30s --retries=3 \
