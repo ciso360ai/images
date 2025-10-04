@@ -26,7 +26,7 @@ RUN apk add --no-cache \
     https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem \
     && update-ca-certificates
 
-# Set environment variables for AWS RDS Postgre SSL
+# Set environment variables for AWS RDS PostgreSQL SSL
 ENV POSTGRES_TLS_CERT_FILE=/usr/local/share/ca-certificates/ca.crt
 ENV AWS_CA_FILE=/usr/local/share/ca-certificates/ca.crt
 
