@@ -51,6 +51,17 @@ fi
 : "${POSTGRES_TLS_CA_FILE:=}"
 : "${POSTGRES_TLS_SERVER_NAME:=}"
 
+# Additional TLS configuration
+: "${SQL_TLS_ENABLED:=false}"
+: "${SQL_HOST_VERIFICATION:=false}"
+: "${SQL_CERT:=}"
+
+# Server configuration
+: "${SERVICES:=history,matching,frontend,worker}"
+: "${LOG_LEVEL:=info}"
+: "${ENABLE_ES:=false}"
+: "${DYNAMIC_CONFIG_FILE_PATH:=/temporal-data/dynamicconfig/docker.yaml}"
+
 # Server setup
 : "${TEMPORAL_ADDRESS:=}"
 # TEMPORAL_CLI_ADDRESS is deprecated and support for it will be removed in the future release.
@@ -273,5 +284,54 @@ fi
 
 # Run this func in parallel process. It will wait for server to start and then run required steps.
 setup_server &
+
+# === Runtime variable substitution ===
+# Replace placeholder variables in docker.yaml with actual environment variable values
+CONFIG_FILE="${TEMPORAL_HOME}/config/docker.yaml"
+
+echo "Performing runtime variable substitution in ${CONFIG_FILE}"
+
+# Set restrictive permissions on config file to protect credentials
+chmod 600 "${CONFIG_FILE}"
+
+# Replace database configuration variables
+# Using pipe delimiter (|) to handle colons and special characters in values
+echo "Substituting database configuration..."
+sed -i "s|\${DB}|${DB}|g" "${CONFIG_FILE}"
+sed -i "s|\${DB_PORT}|${DB_PORT}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_USER}|${POSTGRES_USER}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_PWD}|${POSTGRES_PWD}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_SEEDS}|${POSTGRES_SEEDS}|g" "${CONFIG_FILE}"
+sed -i "s|\${DBNAME}|${DBNAME}|g" "${CONFIG_FILE}"
+sed -i "s|\${VISIBILITY_DBNAME}|${VISIBILITY_DBNAME}|g" "${CONFIG_FILE}"
+
+# Replace TLS configuration variables
+echo "Substituting TLS configuration..."
+sed -i "s|\${POSTGRES_TLS_ENABLED}|${POSTGRES_TLS_ENABLED}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_TLS_DISABLE_HOST_VERIFICATION}|${POSTGRES_TLS_DISABLE_HOST_VERIFICATION}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_TLS_CERT_FILE}|${POSTGRES_TLS_CERT_FILE}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_TLS_KEY_FILE}|${POSTGRES_TLS_KEY_FILE:-}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_TLS_CA_FILE}|${POSTGRES_TLS_CA_FILE:-}|g" "${CONFIG_FILE}"
+sed -i "s|\${POSTGRES_TLS_SERVER_NAME}|${POSTGRES_TLS_SERVER_NAME:-}|g" "${CONFIG_FILE}"
+sed -i "s|\${SQL_TLS_ENABLED}|${SQL_TLS_ENABLED}|g" "${CONFIG_FILE}"
+sed -i "s|\${SQL_HOST_VERIFICATION}|${SQL_HOST_VERIFICATION}|g" "${CONFIG_FILE}"
+sed -i "s|\${SQL_CERT}|${SQL_CERT}|g" "${CONFIG_FILE}"
+
+# Replace server configuration variables
+echo "Substituting server configuration..."
+sed -i "s|\${TEMPORAL_BROADCAST_ADDRESS}|${TEMPORAL_BROADCAST_ADDRESS:-}|g" "${CONFIG_FILE}"
+sed -i "s|\${BIND_ON_IP}|${BIND_ON_IP}|g" "${CONFIG_FILE}"
+sed -i "s|\${TEMPORAL_ADDRESS}|${TEMPORAL_ADDRESS}|g" "${CONFIG_FILE}"
+sed -i "s|\${TEMPORAL_CLI_ADDRESS}|${TEMPORAL_CLI_ADDRESS}|g" "${CONFIG_FILE}"
+
+# Replace additional configuration variables
+echo "Substituting additional configuration..."
+sed -i "s|\${SERVICES}|${SERVICES}|g" "${CONFIG_FILE}"
+sed -i "s|\${LOG_LEVEL}|${LOG_LEVEL}|g" "${CONFIG_FILE}"
+sed -i "s|\${ENABLE_ES}|${ENABLE_ES}|g" "${CONFIG_FILE}"
+sed -i "s|\${DYNAMIC_CONFIG_FILE_PATH}|${DYNAMIC_CONFIG_FILE_PATH}|g" "${CONFIG_FILE}"
+sed -i "s|\${SKIP_SCHEMA_SETUP}|${SKIP_SCHEMA_SETUP}|g" "${CONFIG_FILE}"
+
+echo "Variable substitution complete. Starting Temporal server..."
 
 exec temporal-server --env docker start
