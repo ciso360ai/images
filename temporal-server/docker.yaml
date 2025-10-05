@@ -1,6 +1,6 @@
 log:
     stdout: true
-    level: info
+    level: ${LOG_LEVEL}
 
 persistence:
     numHistoryShards: 4
@@ -9,45 +9,45 @@ persistence:
     datastores:
         default:
             sql:
-                pluginName: "postgres12"
-                databaseName: "temporal"
-                connectAddr:
+                pluginName: ${DB}
+                databaseName: ${DBNAME}
+                connectAddr: ${POSTGRES_SEEDS}
                 connectProtocol: "tcp"
-                user:
-                password:
+                user: ${POSTGRES_USER}
+                password: ${POSTGRES_PWD}
                 maxConns: 20
                 maxIdleConns: 20
                 maxConnLifetime: 1h
                 tls:
-                    enabled: true
+                    enabled: ${POSTGRES_TLS_ENABLED}
                     caFile: 
-                    certFile: /usr/local/share/ca-certificates/ca.crt
+                    certFile: ${POSTGRES_TLS_CERT_FILE}
                     keyFile: 
-                    enableHostVerification: false
+                    enableHostVerification: ${SQL_HOST_VERIFICATION}
                     serverName: 
         visibility:
             sql:
-                pluginName: "postgres12"
-                databaseName: "temporal_visibility"
-                connectAddr:
+                pluginName: ${DB}
+                databaseName: ${VISIBILITY_DBNAME}
+                connectAddr: ${POSTGRES_SEEDS}
                 connectProtocol: "tcp"
-                user:
-                password:
+                user: ${POSTGRES_USER}
+                password: ${POSTGRES_PWD}
                 maxConns: 10
                 maxIdleConns: 10
                 maxConnLifetime: 1h
                 tls:
-                    enabled: true
+                    enabled: ${POSTGRES_TLS_ENABLED}
                     caFile: 
-                    certFile: /usr/local/share/ca-certificates/ca.crt
+                    certFile: ${POSTGRES_TLS_CERT_FILE}
                     keyFile: 
-                    enableHostVerification: false
+                    enableHostVerification: ${SQL_HOST_VERIFICATION}
                     serverName: 
 
 global:
     membership:
         maxJoinDuration: 30s
-        broadcastAddress:
+        broadcastAddress: ${TEMPORAL_BROADCAST_ADDRESS}
     pprof:
         port: 0
     tls:
