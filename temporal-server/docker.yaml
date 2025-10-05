@@ -11,7 +11,10 @@ persistence:
             sql:
                 pluginName: "postgres12"
                 databaseName: "temporal"
+                connectAddr:
                 connectProtocol: "tcp"
+                user:
+                password:
                 maxConns: 20
                 maxIdleConns: 20
                 maxConnLifetime: 1h
@@ -26,7 +29,10 @@ persistence:
             sql:
                 pluginName: "postgres12"
                 databaseName: "temporal_visibility"
+                connectAddr:
                 connectProtocol: "tcp"
+                user:
+                password:
                 maxConns: 10
                 maxIdleConns: 10
                 maxConnLifetime: 1h
@@ -41,6 +47,7 @@ persistence:
 global:
     membership:
         maxJoinDuration: 30s
+        broadcastAddress:
     pprof:
         port: 0
     tls:
