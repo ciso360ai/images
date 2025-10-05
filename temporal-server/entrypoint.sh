@@ -334,4 +334,4 @@ sed -i "s|\${SKIP_SCHEMA_SETUP}|${SKIP_SCHEMA_SETUP}|g" "${CONFIG_FILE}"
 
 echo "Variable substitution complete. Starting Temporal server..."
 
-exec temporal-server --env docker start
+exec temporal-server --env docker start --service=history --service=matching --service=frontend --service=worker

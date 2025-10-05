@@ -96,6 +96,7 @@ global:
             keySourceURIs:
             refreshInterval: 1m
         permissionsClaimName: permissions
+        permissionsRegex:
         authorizer: 
         claimMapper: 
 services:
