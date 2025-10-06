@@ -1,0 +1,10 @@
+temporalio
+fastapi
+uvicorn
+aiohttp
+httpx
+httpx[http2]
+psutil
+bbot==2.7.1
+surrealdb
+python-dotenv

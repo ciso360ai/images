@@ -1,0 +1,9 @@
+# DEFAULT BBOT CONFIG
+# /root/.config/bbot/bbot.yml 
+
+home: /tmp/.bbot
+deps:
+   behavior: ignore_failed
+modules:
+  nuclei:
+    version: 3.4.10
