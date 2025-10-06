@@ -32,6 +32,9 @@ jobs:
     strategy:
       matrix:
         include:
+          - image: ghcr.io/ciso360ai/bbot
+            dockerfile: bbot/Dockerfile
+            context: bbot/.
           - image: ghcr.io/ciso360ai/temporal-server
             dockerfile: temporal-server/Dockerfile
             context: temporal-server/.
