@@ -21,6 +21,7 @@ WORKDIR /tmp
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
+RUN mkdir -p /root/.config/bbot
 COPY bbot.yml /root/.config/bbot/bbot.yml
 
 RUN pip install --upgrade pip setuptools wheel && \
