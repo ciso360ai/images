@@ -27,7 +27,8 @@ COPY bbot.yml /root/.config/bbot/bbot.yml
 RUN pip install --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt
 
-RUN bbot --install-all-deps
+# Install BBOT dependencies
+RUN all_modules="$(bbot -s --help | grep -i "Modules to enable" | sed 's/^.*Modules to enable. Choices: //g')" ; bbot --allow-deadly -m $all_modules --dry-run
 
 RUN /tmp/.bbot/tools/nuclei -update-template-dir /tmp/.bbot/tools/nuclei-templates -update-templates
 
