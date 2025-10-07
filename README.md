@@ -14,23 +14,23 @@ Multi-platform Docker images for Temporal workflow engine.
 
 # Temporal Server
 cd temporal-server
-docker buildx build --load --tag ciso360ai/temporal-server .
+docker buildx build --load --tag ghcr.io/ciso360ai/temporal-server .
 
 # Temporal UI
 cd temporal-ui
-docker buildx build --load --tag ciso360ai/temporal-ui .
+docker buildx build --load --tag ghcr.io/ciso360ai/temporal-ui .
 
 # BBOT
 cd bbot
-docker buildx build --load --tag ciso360ai/bbot .
+docker buildx build --load --tag ghcr.io/ciso360ai/bbot:latest .
 
 ```
 
 ## Debug
 ```bash
-docker run --rm -it ciso360ai/temporal-server:latest sh
+docker run --rm -it ghcr.io/ciso360ai/temporal-server:latest sh
 
-docker run --rm -it ciso360ai/bbot:latest
+docker run --rm -it ghcr.io/ciso360ai/bbot:latest
 
 ```
 
