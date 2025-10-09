@@ -32,6 +32,10 @@ jobs:
     strategy:
       matrix:
         include:
+          - image: ghcr.io/ciso360ai/backend-base
+            dockerfile: backend-base/Dockerfile
+            context: backend-base/.
+            platforms: linux/amd64,linux/arm64
           - image: ghcr.io/ciso360ai/bbot
             dockerfile: bbot/Dockerfile
             context: bbot/.
