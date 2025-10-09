@@ -1,10 +1,11 @@
-temporalio
-fastapi
-uvicorn
 aiohttp
-httpx
+fastapi
 httpx[http2]
 psutil
-bbot==2.7.1
-surrealdb
 python-dotenv
+surrealdb
+temporalio
+uvicorn
+
+# static bbot version to avoid breaking changes
+bbot==2.7.1

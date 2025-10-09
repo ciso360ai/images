@@ -11,3 +11,9 @@ updates:
       - "**/*"
     schedule:
       interval: "weekly"
+  # Maintain dependencies for pip
+  - package-ecosystem: "pip"
+    directories:
+      - "**/*"
+    schedule:
+      interval: "weekly"
