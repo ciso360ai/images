@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Switch back to zitadel user
 USER zitadel
 
-# Set environment variables for AWS RDS Postgre SSL
+# Set environment variables for AWS RDS PostgreSQL SSL
 ENV PGSSLROOTCERT=/usr/local/share/ca-certificates/aws-rds-global-bundle.crt
 ENV SSL_CERT_FILE=/usr/local/share/ca-certificates/aws-rds-global-bundle.crt
 ENV ZITADEL_DATABASE_POSTGRES_USER_SSL_ROOTCERT=/usr/local/share/ca-certificates/aws-rds-global-bundle.crt
