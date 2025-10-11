@@ -1,4 +1,4 @@
-ARG ZITADEL_VERSION=4.3.2-debug
+ARG ZITADEL_VERSION=4.3.1-debug
 
 # Custom Zitadel image with AWS RDS SSL support
 FROM ghcr.io/zitadel/zitadel:v${ZITADEL_VERSION}
