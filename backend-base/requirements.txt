@@ -1,18 +1,37 @@
-aiohttp
-argon2-cffi
-bcrypt
+# Core Web Framework
 fastapi
-httpx[http2]
-jsonpath-ng
+uvicorn
+
+# Database
+surrealdb
+
+# Authentication & Security
+python-jose
 passlib[bcrypt]
+bcrypt
+argon2-cffi
+
+# Environment & Configuration
+python-dotenv
+python-dateutil
+
+# HTTP Clients
+httpx[http2]
+aiohttp
+
+# Data Processing
+python-multipart
+jsonpath-ng
+
+# Workflow Orchestration
+temporalio
+
+# Payment Integration
+stripe
+
+# Report Generation (CSV and PDF)
+reportlab
+
+# Testing
 pytest
 pytest-asyncio
-python-dateutil
-python-dotenv
-python-jose
-python-multipart
-reportlab
-stripe
-surrealdb
-temporalio
-uvicorn
