@@ -13,7 +13,7 @@ argon2-cffi
 
 # Environment & Configuration
 python-dotenv
-python-dateutil>=2.8.0
+python-dateutil
 
 # HTTP Clients
 httpx[http2]
