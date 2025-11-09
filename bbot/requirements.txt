@@ -8,4 +8,5 @@ temporalio
 uvicorn
 
 # static bbot version to avoid breaking changes
-bbot==2.7.1
+# bbot==2.7.2
+bbot @ git+https://github.com/ciso360ai/bbot
