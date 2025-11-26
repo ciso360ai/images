@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.22
-ARG TEMPORAL_VERSION=1.29.0
+ARG TEMPORAL_VERSION=1.29.1
 
 # Temporal source for build metadata
 FROM temporalio/auto-setup:${TEMPORAL_VERSION} AS temporal-source

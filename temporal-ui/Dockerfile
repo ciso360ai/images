@@ -1,4 +1,4 @@
-ARG TEMPORALUI_VERSION=2.42.1
+ARG TEMPORALUI_VERSION=2.43.3
 
 # Use Temporal UI as base image (proper platform targeting)
 FROM temporalio/ui:${TEMPORALUI_VERSION}
