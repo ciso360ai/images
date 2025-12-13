@@ -1,11 +1,11 @@
-ARG ALPINE_VERSION=3.22
+# Check: https://github.com/temporalio/temporal/releases
 ARG TEMPORAL_VERSION=1.29.1
 
 # Temporal source for build metadata
-FROM temporalio/auto-setup:${TEMPORAL_VERSION} AS temporal-source
+FROM temporalio/auto-setup:1.29.1 AS temporal-source
 
 # Base image
-FROM alpine:${ALPINE_VERSION}
+FROM alpine:3.22
 
 # Re-declare ARGs after FROM to make them available in this stage
 ARG TEMPORAL_VERSION
