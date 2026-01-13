@@ -1,7 +1,7 @@
 # Custom Zitadel image with AWS RDS SSL support
 
 # Check: https://github.com/zitadel/zitadel/releases and use -debug variant for shell access
-FROM ghcr.io/zitadel/zitadel:v4.7.5-debug
+FROM ghcr.io/zitadel/zitadel:v4.9.0-debug
 
 LABEL \
     name="CISO360AI ZITADEL" \
