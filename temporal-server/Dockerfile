@@ -1,8 +1,8 @@
 # Check: https://github.com/temporalio/temporal/releases
-ARG TEMPORAL_VERSION=1.29.1
+ARG TEMPORAL_VERSION=1.29.3
 
 # Temporal source for build metadata
-FROM temporalio/auto-setup:1.29.1 AS temporal-source
+FROM temporalio/auto-setup:1.29.3 AS temporal-source
 
 # Base image
 FROM alpine:3.22
