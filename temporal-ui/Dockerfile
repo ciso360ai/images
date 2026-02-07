@@ -1,8 +1,5 @@
 # Check: https://github.com/temporalio/ui/releases
-ARG TEMPORALUI_VERSION=2.43.3
-
-# Use Temporal UI as base image (proper platform targeting)
-FROM temporalio/ui:${TEMPORALUI_VERSION}
+FROM temporalio/ui:2.45.1
 
 LABEL \
     name="CISO360AI Temporal UI" \
