@@ -5,7 +5,7 @@ ARG TEMPORAL_VERSION=1.29.3
 FROM temporalio/auto-setup:1.29.3 AS temporal-source
 
 # Base image
-FROM alpine:3.22
+FROM alpine:3.23
 
 # Re-declare ARGs after FROM to make them available in this stage
 ARG TEMPORAL_VERSION
