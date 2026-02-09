@@ -6,4 +6,4 @@ deps:
    behavior: ignore_failed
 modules:
   nuclei:
-    version: 3.4.10
+    version: 3.7.0
