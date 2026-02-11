@@ -1,4 +1,4 @@
-FROM python:3.12-bookworm
+FROM python:3.13-trixie
 # extractous does not yet support python 3.14 so bbot fails to install certain modules
 # to be revisited once extractous supports python 3.14 or bbot changes its dependencies
 
