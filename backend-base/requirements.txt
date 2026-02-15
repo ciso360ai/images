@@ -3,7 +3,7 @@ fastapi
 uvicorn
 
 # Database
-surrealdb==1.0.8
+surrealdb>=1.0.8
 
 # Authentication & Security
 python-jose

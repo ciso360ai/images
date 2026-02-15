@@ -3,7 +3,7 @@ fastapi
 httpx[http2]
 psutil
 python-dotenv
-surrealdb
+surrealdb>=1.0.8
 temporalio
 uvicorn
 
