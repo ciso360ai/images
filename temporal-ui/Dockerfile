@@ -1,5 +1,5 @@
 # Check: https://github.com/temporalio/ui/releases
-FROM temporalio/ui:2.47.3
+FROM temporalio/ui:2.48.1
 
 LABEL \
     name="CISO360AI Temporal UI" \
