@@ -7,3 +7,5 @@ deps:
 modules:
   nuclei:
     version: 3.7.1
+  gowitness:
+    chrome_path: /usr/bin/chromium
