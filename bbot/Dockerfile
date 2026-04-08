@@ -15,7 +15,7 @@ ARG TARGETARCH
 ARG TARGETPLATFORM
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    7zip bash curl pandoc chromium openssl gcc git make unzip curl wget vim sudo \
+    7zip bash curl pandoc chromium openssl gcc git make unzip wget vim sudo \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
