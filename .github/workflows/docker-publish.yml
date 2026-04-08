@@ -39,7 +39,7 @@ jobs:
           - image: ghcr.io/ciso360ai/bbot
             dockerfile: bbot/Dockerfile
             context: bbot/.
-            platforms: linux/amd64 # no arm64 build for bbot worker due to extractous issues
+            platforms: linux/amd64,linux/arm64
           - image: ghcr.io/ciso360ai/temporal-server
             dockerfile: temporal-server/Dockerfile
             context: temporal-server/.
