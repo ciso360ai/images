@@ -10,4 +10,4 @@ uvicorn
 # static bbot version to avoid breaking changes
 # bbot==2.8.4
 # bbot @ git+https://github.com/ciso360ai/bbot
-bbot @ git+https://github.com/blacklanternsecurity/bbot@3.0
+bbot @ git+https://github.com/blacklanternsecurity/bbot@b4e471840d926abfe427b04b81f75e593a95ebcb #v3.0@9/4/2026
