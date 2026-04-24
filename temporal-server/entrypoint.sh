@@ -5,10 +5,8 @@ set -eu -o pipefail
 : "${BIND_ON_IP:=$(getent hosts "$(hostname)" | awk '{print $1;}')}"
 export BIND_ON_IP
 
-if [[ "${BIND_ON_IP}" == "0.0.0.0" || "${BIND_ON_IP}" == "::0" ]]; then
-    : "${TEMPORAL_BROADCAST_ADDRESS:=$(getent hosts "$(hostname)" | awk '{print $1;}')}"
-    export TEMPORAL_BROADCAST_ADDRESS
-fi
+: "${TEMPORAL_BROADCAST_ADDRESS:=$(getent hosts "$(hostname)" | awk '{print $1;}')}"
+export TEMPORAL_BROADCAST_ADDRESS
 
 # check TEMPORAL_ADDRESS is not empty
 if [[ -z "${TEMPORAL_ADDRESS:-}" ]]; then
@@ -60,7 +58,7 @@ fi
 : "${SERVICES:=history,matching,frontend,worker}"
 : "${LOG_LEVEL:=info}"
 : "${ENABLE_ES:=false}"
-: "${DYNAMIC_CONFIG_FILE_PATH:=/temporal-data/dynamicconfig/docker.yaml}"
+: "${DYNAMIC_CONFIG_FILE_PATH:=/etc/temporal/config/dynamic_config.yaml}"
 
 # Server setup
 : "${TEMPORAL_ADDRESS:=}"
@@ -227,9 +225,9 @@ setup_schema() {
 
 register_default_namespace() {
     echo "Registering default namespace: ${DEFAULT_NAMESPACE}."
-    if ! temporal operator namespace describe "${DEFAULT_NAMESPACE}"; then
+    if ! temporal operator namespace describe -n "${DEFAULT_NAMESPACE}"; then
         echo "Default namespace ${DEFAULT_NAMESPACE} not found. Creating..."
-        temporal operator namespace create --retention "${DEFAULT_NAMESPACE_RETENTION}" --description "Default namespace for Temporal Server." "${DEFAULT_NAMESPACE}"
+        temporal operator namespace create -n "${DEFAULT_NAMESPACE}" --retention "${DEFAULT_NAMESPACE_RETENTION}" --description "Default namespace for Temporal Server."
         echo "Default namespace ${DEFAULT_NAMESPACE} registration complete."
     else
         echo "Default namespace ${DEFAULT_NAMESPACE} already registered."
@@ -280,6 +278,11 @@ if [[ ${SKIP_SCHEMA_SETUP} != true ]]; then
     validate_db_env
     wait_for_db
     setup_schema
+else
+    # Even when skipping schema setup, wait for DB before starting the server.
+    # Temporal v1.30.4+ runs a schema version compatibility check at startup
+    # that requires a live DB connection.
+    wait_for_db
 fi
 
 # Run this func in parallel process. It will wait for server to start and then run required steps.
