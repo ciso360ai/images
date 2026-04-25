@@ -21,13 +21,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /tmp
 
-# Copy requirements and install dependencies
-COPY requirements.txt .
+# Install uv from the official static-binary image (pinned)
+COPY --from=ghcr.io/astral-sh/uv:0.11.7 /uv /uvx /usr/local/bin/
+
+# Copy lockfile + project metadata
+COPY pyproject.toml uv.lock .python-version ./
+
+# Pre-place bbot config so bbot's first run uses it
 RUN mkdir -p /root/.config/bbot
 COPY bbot.yml /root/.config/bbot/bbot.yml
 
-RUN pip install --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies into the system environment from the lockfile
+ENV UV_LINK_MODE=copy \
+    UV_PROJECT_ENVIRONMENT=/usr/local
+RUN uv sync --frozen --no-install-project
 
 # Install BBOT module dependencies (dry-run triggers dep installation)
 RUN bbot --dry-run -t ciso360.net -p kitchen-sink \
