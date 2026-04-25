@@ -1,14 +1,16 @@
 # Check: https://github.com/temporalio/temporal/releases
-ARG TEMPORAL_VERSION=1.29.3
+ARG TEMPORAL_VERSION=1.30.4
+ARG TEMPORAL_CLI=1.6.2
 
-# Temporal source for build metadata
-FROM temporalio/auto-setup:1.29.3 AS temporal-source
+# SQL schema migrations source (temporal-sql-tool at startup)
+FROM temporalio/admin-tools:${TEMPORAL_VERSION} AS temporal-admin-tools
 
 # Base image
 FROM alpine:3.23
 
 # Re-declare ARGs after FROM to make them available in this stage
 ARG TEMPORAL_VERSION
+ARG TEMPORAL_CLI
 ARG TARGETPLATFORM
 
 LABEL \
@@ -35,26 +37,32 @@ WORKDIR /etc/temporal
 # Download and install specific AMD64 versions
 RUN \
   if [ "$TARGETPLATFORM" = 'linux/amd64' ]; then \
+    mkdir -p /tmp/temporal && cd /tmp/temporal && \
     wget https://github.com/temporalio/temporal/releases/download/v${TEMPORAL_VERSION}/temporal_${TEMPORAL_VERSION}_linux_amd64.tar.gz \
+    && wget https://github.com/temporalio/cli/releases/download/v${TEMPORAL_CLI}/temporal_cli_${TEMPORAL_CLI}_linux_amd64.tar.gz \
     && tar -xzf temporal_${TEMPORAL_VERSION}_linux_amd64.tar.gz \
-    && mv temporal-* /usr/local/bin \
-    && rm -rf temporal-* \
-    && rm -rf *.tar.gz \
+    && tar -xzf temporal_cli_${TEMPORAL_CLI}_linux_amd64.tar.gz \
+    && mv temporal temporal-server temporal-sql-tool /usr/local/bin \
+    && rm -rf /tmp/temporal \
   ; fi
 
 # Download and install specific ARM64 versions
 RUN \
   if [ "$TARGETPLATFORM" = 'linux/arm64' ]; then \
+    mkdir -p /tmp/temporal && cd /tmp/temporal && \
     wget https://github.com/temporalio/temporal/releases/download/v${TEMPORAL_VERSION}/temporal_${TEMPORAL_VERSION}_linux_arm64.tar.gz \
+    && wget https://github.com/temporalio/cli/releases/download/v${TEMPORAL_CLI}/temporal_cli_${TEMPORAL_CLI}_linux_arm64.tar.gz \
     && tar -xzf temporal_${TEMPORAL_VERSION}_linux_arm64.tar.gz \
-    && mv temporal-* /usr/local/bin \
-    && rm -rf temporal-* \
-    && rm -rf *.tar.gz \
+    && tar -xzf temporal_cli_${TEMPORAL_CLI}_linux_arm64.tar.gz \
+    && mv temporal temporal-server temporal-sql-tool /usr/local/bin \
+    && rm -rf /tmp/temporal \
   ; fi
 
-COPY --from=temporal-source /etc/temporal/schema /etc/temporal/schema
-COPY --from=temporal-source /usr/local/bin/temporal /usr/local/bin/temporal
+# Copy SQL schema migrations needed by temporal-sql-tool at startup
+COPY --from=temporal-admin-tools /etc/temporal/schema /etc/temporal/schema
+
 COPY docker.yaml /etc/temporal/config/docker.yaml
+COPY dynamic_config.yaml /etc/temporal/config/dynamic_config.yaml
 COPY entrypoint.sh /etc/temporal/entrypoint.sh
 
 # Create user and directories

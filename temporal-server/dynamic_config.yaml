@@ -1,0 +1,6 @@
+# Temporal dynamic config overrides.
+# Format: each key maps to a list of constrained values.
+# Example:
+# frontend.rps:
+#   - value: 2000
+#     constraints: {}

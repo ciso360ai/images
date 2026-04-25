@@ -168,5 +168,5 @@ namespaceDefaults:
 
 
 dynamicConfigClient:
-    filepath: "/temporal-data/dynamicconfig/docker.yaml"
+    filepath: "${DYNAMIC_CONFIG_FILE_PATH}"
     pollInterval: "60s"
