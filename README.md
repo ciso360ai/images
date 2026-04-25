@@ -66,3 +66,59 @@ Edit Dockerfile ARGs:
 - `temporal-server/Dockerfile`: `TEMPORAL_VERSION=X.Y.Z`
 - `temporal-ui/Dockerfile`: `TEMPORALUI_VERSION=X.Y.Z`
 - `zitadel/Dockerfile`: `ZITADEL_VERSION=X.Y.Z`
+
+## Python Dependency Management (uv)
+
+The Python images (`backend-base`, `bbot`) use [uv](https://docs.astral.sh/uv/)
+for dependency management. Each image has its own `pyproject.toml` + `uv.lock`
+and pins Python via `.python-version`. Lockfiles are the single source of
+truth — installs in the Dockerfiles run `uv sync --frozen --no-install-project`,
+so reproducible builds require committing the lockfile after any change.
+
+Install uv locally (see [docs](https://docs.astral.sh/uv/getting-started/installation/)):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### Common workflows
+
+Run from the image directory (e.g. `cd backend-base/` or `cd bbot/`):
+
+```bash
+# Resolve and install everything from the lockfile (no source install)
+uv sync --frozen --no-install-project
+
+# Add a new runtime dependency (updates pyproject.toml + uv.lock)
+uv add "somepkg>=1.2"
+
+# Remove a dependency
+uv remove somepkg
+
+# Bump a single package to its latest allowed version
+uv lock --upgrade-package fastapi
+
+# Refresh the entire lockfile against current pyproject constraints
+uv lock --upgrade
+
+# Inspect the resolved tree
+uv tree
+```
+
+After any `uv add`/`uv remove`/`uv lock` change, rebuild the image to verify:
+
+```bash
+docker buildx build --load --tag ghcr.io/ciso360ai/backend-base:test backend-base/
+```
+
+### Why no `requirements.txt`?
+
+The Dockerfiles install dependencies directly from `uv.lock` via `uv sync`,
+so a generated `requirements.txt` is no longer needed. Dependabot scans the
+`uv` ecosystem (see `.github/dependabot.yml`) and opens PRs against
+`pyproject.toml` / `uv.lock` directly. If you ever need a flat
+pip-compatible export (e.g. for an external scanner), generate it on demand:
+
+```bash
+uv export --frozen --no-emit-project --no-hashes -o requirements.txt
+```

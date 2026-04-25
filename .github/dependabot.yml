@@ -11,9 +11,10 @@ updates:
       - "**/*"
     schedule:
       interval: "weekly"
-  # Maintain dependencies for pip
-  - package-ecosystem: "pip"
+  # Maintain dependencies for uv (Python projects use uv.lock)
+  - package-ecosystem: "uv"
     directories:
-      - "**/*"
+      - "/backend-base"
+      - "/bbot"
     schedule:
       interval: "weekly"
