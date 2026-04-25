@@ -2,8 +2,7 @@
 ARG TEMPORAL_VERSION=1.30.4
 ARG TEMPORAL_CLI=1.6.2
 
-# Temporal CLI image for downloading the CLI binary
-FROM temporalio/temporal:${TEMPORAL_VERSION} AS temporal-cli
+# SQL schema migrations source (temporal-sql-tool at startup)
 FROM temporalio/admin-tools:${TEMPORAL_VERSION} AS temporal-admin-tools
 
 # Base image

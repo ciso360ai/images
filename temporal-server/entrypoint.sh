@@ -282,6 +282,7 @@ else
     # Even when skipping schema setup, wait for DB before starting the server.
     # Temporal v1.30.4+ runs a schema version compatibility check at startup
     # that requires a live DB connection.
+    validate_db_env
     wait_for_db
 fi
 
