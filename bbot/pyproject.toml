@@ -22,4 +22,4 @@ dependencies = [
 package = false
 
 [tool.uv.sources]
-bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "35342055bfbb647a4a071b8833d836eb41a2de30" }
+bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "5be49934b1ddd9835f1cb768ef4e0510c466c99d" }

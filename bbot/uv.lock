@@ -168,7 +168,7 @@ wheels = [
 [[package]]
 name = "bbot"
 version = "3.0.0"
-source = { git = "https://github.com/blacklanternsecurity/bbot?rev=35342055bfbb647a4a071b8833d836eb41a2de30#35342055bfbb647a4a071b8833d836eb41a2de30" }
+source = { git = "https://github.com/blacklanternsecurity/bbot?rev=5be49934b1ddd9835f1cb768ef4e0510c466c99d#5be49934b1ddd9835f1cb768ef4e0510c466c99d" }
 dependencies = [
     { name = "ansible-core" },
     { name = "ansible-runner" },
@@ -365,7 +365,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "aiohttp" },
-    { name = "bbot", git = "https://github.com/blacklanternsecurity/bbot?rev=35342055bfbb647a4a071b8833d836eb41a2de30" },
+    { name = "bbot", git = "https://github.com/blacklanternsecurity/bbot?rev=5be49934b1ddd9835f1cb768ef4e0510c466c99d" },
     { name = "fastapi" },
     { name = "httpx", extras = ["http2"] },
     { name = "psutil" },
