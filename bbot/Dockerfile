@@ -1,5 +1,5 @@
 FROM python:3.14-trixie
-# Testing bbot python-support-3-14 branch (replaces extractous with kreuzberg)
+# Tracking bbot dev branch (replaces extractous with kreuzberg)
 
 LABEL \
     name="CISO360AI BBOT worker" \
