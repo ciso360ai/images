@@ -13,8 +13,8 @@ dependencies = [
     "temporalio",
     "uvicorn",
 
-    # bbot — pinned to the python-support-3-14 dev branch (replaces extractous with kreuzberg).
-    # Concrete commit + URL declared under [tool.uv.sources] for reproducibility.
+    # bbot — pinned to concrete commit in dev until 3.0
+    # URL declared under [tool.uv.sources] for reproducibility.
     "bbot",
 ]
 
@@ -22,4 +22,4 @@ dependencies = [
 package = false
 
 [tool.uv.sources]
-bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "5be49934b1ddd9835f1cb768ef4e0510c466c99d" }
+bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "f971cb25df8ff86da2c6ddb2b56e6b5b021af6ca" }
