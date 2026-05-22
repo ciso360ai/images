@@ -1,5 +1,5 @@
 FROM python:3.14-trixie
-# Tracking bbot dev branch (replaces extractous with kreuzberg)
+# Pinned to a specific bbot dev commit for reproducibility (includes extractous->kreuzberg change)
 
 LABEL \
     name="CISO360AI BBOT worker" \
