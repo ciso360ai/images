@@ -11,9 +11,6 @@ ENV DEBIAN_FRONTEND="noninteractive"
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-ARG TARGETARCH
-ARG TARGETPLATFORM
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     7zip bash curl pandoc chromium openssl gcc git make unzip wget vim sudo \
     && apt-get clean \
@@ -31,9 +28,12 @@ COPY pyproject.toml uv.lock .python-version ./
 RUN mkdir -p /root/.config/bbot
 COPY bbot.yml /root/.config/bbot/bbot.yml
 
-# Install Python dependencies into the system environment from the lockfile
+# Install Python dependencies into the system environment from the lockfile.
+# UV_PYTHON_DOWNLOADS=0 forces uv to use the base image's interpreter at
+# /usr/local instead of downloading a managed CPython.
 ENV UV_LINK_MODE=copy \
-    UV_PROJECT_ENVIRONMENT=/usr/local
+    UV_PROJECT_ENVIRONMENT=/usr/local \
+    UV_PYTHON_DOWNLOADS=0
 RUN uv sync --frozen --no-install-project
 
 # Install BBOT module dependencies (dry-run triggers dep installation)

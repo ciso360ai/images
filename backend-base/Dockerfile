@@ -6,12 +6,8 @@ LABEL \
     description="Your All-round Cyber-Intelligent Sidekick"
 
 # Environment Variables
-ENV DEBIAN_FRONTEND="noninteractive"
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-
-ARG TARGETARCH
-ARG TARGETPLATFORM
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash curl \
@@ -26,8 +22,11 @@ COPY pyproject.toml uv.lock .python-version ./
 # Install Python dependencies into the system environment from the lockfile.
 # UV_LINK_MODE=copy avoids hardlink failures when caches and /usr/local
 # live on different filesystems (common in BuildKit).
+# UV_PYTHON_DOWNLOADS=0 forces uv to use the base image's interpreter at
+# /usr/local instead of downloading a managed CPython.
 ENV UV_LINK_MODE=copy \
-    UV_PROJECT_ENVIRONMENT=/usr/local
+    UV_PROJECT_ENVIRONMENT=/usr/local \
+    UV_PYTHON_DOWNLOADS=0
 RUN uv sync --frozen --no-install-project
 
 CMD [ "bash" ]
