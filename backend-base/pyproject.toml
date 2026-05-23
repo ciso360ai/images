@@ -44,7 +44,7 @@ dependencies = [
     # Snyk-pinned transitive vulnerability floors
     # (kept here because parent packages allow older vulnerable versions)
     "pyasn1>=0.6.3",
-    "starlette>=1.0.0",
+    "starlette>=1.1.0",
     "requests>=2.34.2",
     "urllib3>=2.7.0",
     "dnspython>=2.8.0",
