@@ -20,11 +20,11 @@ persistence:
                 maxConnLifetime: 1h
                 tls:
                     enabled: ${POSTGRES_TLS_ENABLED}
-                    caFile: 
-                    certFile: ${POSTGRES_TLS_CERT_FILE}
-                    keyFile: 
+                    caFile: ${POSTGRES_TLS_CA_FILE}
+                    certFile:
+                    keyFile:
                     enableHostVerification: ${SQL_HOST_VERIFICATION}
-                    serverName: 
+                    serverName:
         visibility:
             sql:
                 pluginName: ${DB}
@@ -38,11 +38,11 @@ persistence:
                 maxConnLifetime: 1h
                 tls:
                     enabled: ${POSTGRES_TLS_ENABLED}
-                    caFile: 
-                    certFile: ${POSTGRES_TLS_CERT_FILE}
-                    keyFile: 
+                    caFile: ${POSTGRES_TLS_CA_FILE}
+                    certFile:
+                    keyFile:
                     enableHostVerification: ${SQL_HOST_VERIFICATION}
-                    serverName: 
+                    serverName:
 
 global:
     membership:

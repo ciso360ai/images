@@ -29,7 +29,7 @@ RUN apk add --no-cache \
     mkdir -p /etc/temporal
 
 # Set environment variables for AWS RDS Postgres SSL
-ENV POSTGRES_TLS_CERT_FILE=/usr/local/share/ca-certificates/ca.crt
+ENV POSTGRES_TLS_CA_FILE=/usr/local/share/ca-certificates/ca.crt
 ENV AWS_CA_FILE=/usr/local/share/ca-certificates/ca.crt
 
 WORKDIR /etc/temporal
