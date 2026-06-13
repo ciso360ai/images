@@ -6,7 +6,7 @@ ARG TEMPORAL_CLI=1.6.2
 FROM temporalio/admin-tools:${TEMPORAL_VERSION} AS temporal-admin-tools
 
 # Base image
-FROM alpine:3.23
+FROM alpine:3.24
 
 # Re-declare ARGs after FROM to make them available in this stage
 ARG TEMPORAL_VERSION
