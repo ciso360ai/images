@@ -39,8 +39,8 @@ RUN uv sync --frozen --no-install-project
 # Install BBOT module dependencies (dry-run triggers dep installation)
 RUN bbot --dry-run -t ciso360.net -p kitchen-sink \
     -c interactsh_disable=true \
-    -em asn,skymem,myssl,medusa,git_clone,github_org,crt,crt_db \
-    -m ajaxpro,aspnet_bin_exposure,baddns,baddns_direct,baddns_zone,badsecrets,bucket_amazon,bucket_digitalocean,bucket_firebase,bucket_google,bucket_hetzner,bucket_microsoft,bypass403,dnscommonsrv,dotnetnuke,dnsbrute,dnsbrute_mutations,docker_pull,filedownload,fingerprintx,generic_ssrf,git,gitdumper,gitlab_com,gitlab_onprem,gowitness,graphql_introspection,host_header,http,hunt,iis_shortnames,jadx,legba,lightfuzz,newsletters,ntlm,nuclei,oauth,paramminer_cookies,paramminer_getparams,paramminer_headers,portscan,reflected_parameters,retirejs,robots,securitytxt,sslcert,telerik,url_manipulation,wafw00f,webbrute,webbrute_shortnames,wpscan,trufflehog,trajan \
+    -em asn,skymem,myssl,medusa,git_clone,github_org,crt,crt_db,trufflehog \
+    -m ajaxpro,aspnet_bin_exposure,baddns,baddns_direct,baddns_zone,badsecrets,bucket_amazon,bucket_digitalocean,bucket_firebase,bucket_google,bucket_hetzner,bucket_microsoft,bypass403,dnscommonsrv,dotnetnuke,dnsbrute,dnsbrute_mutations,docker_pull,filedownload,fingerprintx,generic_ssrf,git,gitdumper,gitlab_com,gitlab_onprem,gowitness,graphql_introspection,host_header,http,hunt,iis_shortnames,jadx,legba,lightfuzz,newsletters,ntlm,nuclei,oauth,paramminer_cookies,paramminer_getparams,paramminer_headers,portscan,reflected_parameters,retirejs,robots,securitytxt,sslcert,telerik,url_manipulation,wafw00f,webbrute,webbrute_shortnames,wpscan,trajan \
     && rm -rf /root/.cache/pip /root/.cache/gem /root/.cache/ansible
 
 CMD [ "bash" ]
