@@ -4,7 +4,7 @@ version = "0.0.0"
 description = "CISO360AI BBOT worker image — runtime Python dependencies"
 requires-python = ">=3.14,<3.15"
 dependencies = [
-    "aiohttp",
+    "aiohttp>=3.14.0",
     "fastapi",
     "httpx[http2]",
     "psutil",
@@ -16,10 +16,20 @@ dependencies = [
     # bbot — pinned to concrete commit in dev until 3.0
     # URL declared under [tool.uv.sources] for reproducibility.
     "bbot",
+
+    # Security floors for shared transitive deps (parents allow older
+    # vulnerable versions).
+    "starlette>=1.1.0",
+    "requests>=2.34.2",
+    "urllib3>=2.7.0",
+    "dnspython>=2.8.0",
+    "pyjwt>=2.13.0",
+    "cryptography>=47.0.0",
+    "pyyaml>=6.0.3,<7.0",
 ]
 
 [tool.uv]
 package = false
 
 [tool.uv.sources]
-bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "f971cb25df8ff86da2c6ddb2b56e6b5b021af6ca" }
+bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "404bbbc2eaa5b6187580f4d9cd301da7a814aac7" }

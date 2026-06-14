@@ -1,12 +1,12 @@
 # Check: https://github.com/temporalio/temporal/releases
-ARG TEMPORAL_VERSION=1.31.0
-ARG TEMPORAL_CLI=1.6.2
+ARG TEMPORAL_VERSION=1.31.1
+ARG TEMPORAL_CLI=1.7.2
 
 # SQL schema migrations source (temporal-sql-tool at startup)
 FROM temporalio/admin-tools:${TEMPORAL_VERSION} AS temporal-admin-tools
 
 # Base image
-FROM alpine:3.23
+FROM alpine:3.24
 
 # Re-declare ARGs after FROM to make them available in this stage
 ARG TEMPORAL_VERSION
