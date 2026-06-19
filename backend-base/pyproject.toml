@@ -52,3 +52,5 @@ dependencies = [
 
 [tool.uv]
 package = false
+# Supply-chain cooldown: ignore releases <7 days old (mirrors the main repo).
+exclude-newer = "7 days"

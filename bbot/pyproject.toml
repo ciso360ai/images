@@ -30,6 +30,8 @@ dependencies = [
 
 [tool.uv]
 package = false
+# Supply-chain cooldown: ignore releases <7 days old (mirrors the main repo).
+exclude-newer = "7 days"
 
 [tool.uv.sources]
 bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "404bbbc2eaa5b6187580f4d9cd301da7a814aac7" }
