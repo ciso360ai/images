@@ -24,7 +24,7 @@ dependencies = [
     "urllib3>=2.7.0",
     "dnspython>=2.8.0",
     "pyjwt>=2.13.0",
-    "cryptography>=47.0.0",
+    "cryptography>=49.0.0",
     "pyyaml>=6.0.3,<7.0",
 ]
 
