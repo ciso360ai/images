@@ -3,8 +3,8 @@ revision = 3
 requires-python = "==3.14.*"
 
 [options]
-exclude-newer = "2026-06-12T19:52:25.710172608Z"
-exclude-newer-span = "P7D"
+exclude-newer = "2026-06-23T02:27:19.839051487Z"
+exclude-newer-span = "P3D"
 
 [[package]]
 name = "aiohappyeyeballs"
@@ -397,7 +397,7 @@ dependencies = [
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.14.0" },
     { name = "bbot", git = "https://github.com/blacklanternsecurity/bbot?rev=404bbbc2eaa5b6187580f4d9cd301da7a814aac7" },
-    { name = "cryptography", specifier = ">=47.0.0" },
+    { name = "cryptography", specifier = ">=47.0.0,<49" },
     { name = "dnspython", specifier = ">=2.8.0" },
     { name = "fastapi" },
     { name = "httpx", extras = ["http2"] },
