@@ -3,7 +3,7 @@ revision = 3
 requires-python = "==3.14.*"
 
 [options]
-exclude-newer = "2026-06-23T02:29:22.860011123Z"
+exclude-newer = "2026-06-23T19:09:59.044924324Z"
 exclude-newer-span = "P3D"
 
 [[package]]
@@ -932,7 +932,7 @@ wheels = [
 
 [[package]]
 name = "temporalio"
-version = "1.27.2"
+version = "1.29.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "nexus-rpc" },
@@ -940,13 +940,13 @@ dependencies = [
     { name = "types-protobuf" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ca/62/2bc1a9ad29382a3a99f088907ef2024a94420cfef340be1b33026c632828/temporalio-1.27.2.tar.gz", hash = "sha256:633bf2379492f3db1e887d1e64fdac00d9c2ddc3e9382b831d5af68256912e92", size = 2503041, upload-time = "2026-05-14T02:17:57.565Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/95/22e2e19ad95d42d69320e8cd8d48c8543841f367d2d5a4dca48165e466d2/temporalio-1.29.0.tar.gz", hash = "sha256:3fbfddc5f847956ca20c2e671d3f09cefdb2ab6f0d6a6d59664c6102e922f80b", size = 2657001, upload-time = "2026-06-17T21:18:16.72Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/64/85/9da14f9fbdfae95435d29353bb1c55891581ad6b23c86ca56e72d83035ed/temporalio-1.27.2-cp310-abi3-macosx_10_12_x86_64.whl", hash = "sha256:860f706380faafec8f183f9194d0883c8033a4211c5d19c2c962c45b06cf99e9", size = 14602829, upload-time = "2026-05-14T02:17:45.624Z" },
-    { url = "https://files.pythonhosted.org/packages/24/51/b7437991e71eea082dc53222da11f064974917cd59063ba57e13e5895fbc/temporalio-1.27.2-cp310-abi3-macosx_11_0_arm64.whl", hash = "sha256:a8dc0c680e351f3132809861888d8326dbd5030dd4e570663597e7d4768d9502", size = 13997680, upload-time = "2026-05-14T02:17:53.968Z" },
-    { url = "https://files.pythonhosted.org/packages/8c/5d/358065040e6f0cedbf669acd333622999eec737ff868ca7829d727b77746/temporalio-1.27.2-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:805f3de4d193dec52e040e41dbfc9ab44be0206d2e81142ceefaf7b7208058d1", size = 14252199, upload-time = "2026-05-14T02:17:36.972Z" },
-    { url = "https://files.pythonhosted.org/packages/72/8a/85d2eab07c3e23fc1124203e76857c69ab9b22d8ccebad0835e294edb754/temporalio-1.27.2-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5bc996cb501b8a918f50037ccee6facb05bb70984acada4c2a3e01f5e7957a38", size = 14779945, upload-time = "2026-05-14T02:18:05.513Z" },
-    { url = "https://files.pythonhosted.org/packages/67/81/c9b08609e2a92ecf62c97c59cabfa0608337c8d5cc9941eed5d9a7778840/temporalio-1.27.2-cp310-abi3-win_amd64.whl", hash = "sha256:62a84ae9a60c17932971e4ca3b0f3cd6f32f173b8183e759989376503fb95af6", size = 14981897, upload-time = "2026-05-14T02:17:27.333Z" },
+    { url = "https://files.pythonhosted.org/packages/7e/82/e0810e7e7f5f4eb97e40468abf6bc8d3df0dbc882c09a2c207c38c90d56d/temporalio-1.29.0-cp310-abi3-macosx_10_12_x86_64.whl", hash = "sha256:9d18f989fbea13014e3221de034fbd1945ec05499b663195f0eacb49cc922986", size = 14874156, upload-time = "2026-06-17T21:18:03.299Z" },
+    { url = "https://files.pythonhosted.org/packages/41/48/55a2f948f4cd30d8dcaf1d37a15e23b34d90a68d0d1da6765a08c650bbb2/temporalio-1.29.0-cp310-abi3-macosx_11_0_arm64.whl", hash = "sha256:28bc12b64a7ffc08f7709897d3a0c93faa8972227734669f248cb7de2ce3e69f", size = 14384773, upload-time = "2026-06-17T21:18:06.151Z" },
+    { url = "https://files.pythonhosted.org/packages/1d/71/a13f427089b54de4e11f347b2043934d693baffda569c4b4914e588a6074/temporalio-1.29.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:dd02a107c3f5fa088ed5e4aeda9af91d11afbc53dfd5b28d730776354b159297", size = 14602055, upload-time = "2026-06-17T21:18:08.704Z" },
+    { url = "https://files.pythonhosted.org/packages/73/6a/3ee32775c9b5172560add2ec69c554f476bc6c51ea7a3c24206e03f08cc5/temporalio-1.29.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:950b42e05793762eb7b4b3809e78c9e9dcdf2f23f797aa939ac17eca8ad9b3d3", size = 15075878, upload-time = "2026-06-17T21:18:11.499Z" },
+    { url = "https://files.pythonhosted.org/packages/f5/92/24ef16052075a08e7ed071311704a244944485bc8581d82313f0c3d1b385/temporalio-1.29.0-cp310-abi3-win_amd64.whl", hash = "sha256:8969718f947c6b9df3b51ab4a71bad67abfce81a1023aa1a598a224b712b713a", size = 15333733, upload-time = "2026-06-17T21:18:14.201Z" },
 ]
 
 [[package]]
