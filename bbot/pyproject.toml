@@ -24,14 +24,15 @@ dependencies = [
     "urllib3>=2.7.0",
     "dnspython>=2.8.0",
     "pyjwt>=2.13.0",
-    "cryptography>=47.0.0",
+    # Held below the 49.0 major (backwards-incompatible); lift after validation.
+    "cryptography>=47.0.0,<49",
     "pyyaml>=6.0.3,<7.0",
 ]
 
 [tool.uv]
 package = false
-# Supply-chain cooldown: ignore releases <7 days old (mirrors the main repo).
-exclude-newer = "7 days"
+# Supply-chain cooldown: ignore releases published in the last 3 days.
+exclude-newer = "3 days"
 
 [tool.uv.sources]
 bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "404bbbc2eaa5b6187580f4d9cd301da7a814aac7" }
