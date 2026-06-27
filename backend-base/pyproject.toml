@@ -35,7 +35,7 @@ dependencies = [
     "temporalio",
 
     # Payment integration
-    "stripe>=15,<16",
+    "stripe>=15.3.0,<16",
 
     # Report generation (CSV and PDF)
     "reportlab",
