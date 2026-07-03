@@ -3,7 +3,7 @@ revision = 3
 requires-python = "==3.14.*"
 
 [options]
-exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
+exclude-newer = "2026-06-30T21:27:57.665966006Z"
 exclude-newer-span = "P3D"
 
 [[package]]
@@ -346,12 +346,12 @@ requires-dist = [
     { name = "python-dotenv" },
     { name = "python-jose" },
     { name = "python-multipart" },
-    { name = "reportlab" },
+    { name = "reportlab", specifier = ">=5.0.0,<6" },
     { name = "requests", specifier = ">=2.34.2" },
     { name = "starlette", specifier = ">=1.1.0" },
     { name = "stripe", specifier = ">=15.3.0,<16" },
     { name = "surrealdb", specifier = "==2.0.0" },
-    { name = "temporalio" },
+    { name = "temporalio", specifier = ">=1.29.0,<2" },
     { name = "urllib3", specifier = ">=2.7.0" },
     { name = "uvicorn" },
 ]
