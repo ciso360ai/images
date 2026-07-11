@@ -34,4 +34,4 @@ package = false
 exclude-newer = "3 days"
 
 [tool.uv.sources]
-bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "404bbbc2eaa5b6187580f4d9cd301da7a814aac7" }
+bbot = { git = "https://github.com/blacklanternsecurity/bbot", rev = "69ec06adef33fa5c3d4cdee2c8d370ac892cceb0" }
