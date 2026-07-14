@@ -73,7 +73,7 @@ jobs:
           # images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           images: ${{ matrix.image }}
           tags: |
-              type=semver,pattern={{version}}
+              type=semver,pattern=v{{version}}
               type=schedule,pattern={{date 'YYYYMMDD'}}
               type=raw,value=latest
 
