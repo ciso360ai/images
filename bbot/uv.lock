@@ -3,7 +3,7 @@ revision = 3
 requires-python = "==3.14.*"
 
 [options]
-exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
+exclude-newer = "2026-07-14T21:58:56.749159725Z"
 exclude-newer-span = "P3D"
 
 [[package]]
@@ -173,7 +173,7 @@ wheels = [
 [[package]]
 name = "bbot"
 version = "3.0.1"
-source = { git = "https://github.com/blacklanternsecurity/bbot?rev=69ec06adef33fa5c3d4cdee2c8d370ac892cceb0#69ec06adef33fa5c3d4cdee2c8d370ac892cceb0" }
+source = { git = "https://github.com/blacklanternsecurity/bbot?rev=1e01051664eb6dbb703c0542d0d3008eca89640b#1e01051664eb6dbb703c0542d0d3008eca89640b" }
 dependencies = [
     { name = "ansible-core" },
     { name = "ansible-runner" },
@@ -396,7 +396,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.14.0" },
-    { name = "bbot", git = "https://github.com/blacklanternsecurity/bbot?rev=69ec06adef33fa5c3d4cdee2c8d370ac892cceb0" },
+    { name = "bbot", git = "https://github.com/blacklanternsecurity/bbot?rev=1e01051664eb6dbb703c0542d0d3008eca89640b" },
     { name = "cryptography", specifier = ">=49.0.0" },
     { name = "dnspython", specifier = ">=2.8.0" },
     { name = "fastapi" },

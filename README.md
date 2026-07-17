@@ -15,24 +15,19 @@ Multi-platform Docker images [CISO360AI](https://ciso360.ai)
 ```bash
 
 # Backend Base
-cd backend-base
-docker buildx build --load --tag ghcr.io/ciso360ai/backend-base:latest .
+docker buildx build --load --tag ghcr.io/ciso360ai/backend-base:latest backend-base/
 
 # Temporal Server
-cd temporal-server
-docker buildx build --load --tag ghcr.io/ciso360ai/temporal-server:latest .
+docker buildx build --load --tag ghcr.io/ciso360ai/temporal-server:latest temporal-server/
 
 # Temporal UI
-cd temporal-ui
-docker buildx build --load --tag ghcr.io/ciso360ai/temporal-ui:latest .
+docker buildx build --load --tag ghcr.io/ciso360ai/temporal-ui:latest temporal-ui/
 
 # BBOT
-cd bbot
-docker buildx build --load --tag ghcr.io/ciso360ai/bbot:latest .
+docker buildx build --load -t ghcr.io/ciso360ai/bbot:latest bbot/
 
 # Zitadel
-cd zitadel
-docker buildx build --load --tag ghcr.io/ciso360ai/zitadel:latest .
+docker buildx build --load --tag ghcr.io/ciso360ai/zitadel:latest zitadel/
 
 ```
 
