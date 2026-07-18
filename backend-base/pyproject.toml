@@ -42,7 +42,7 @@ dependencies = [
 
     # Security floors for transitive deps
     # (kept here because parent packages allow older vulnerable versions)
-    "pyasn1>=0.6.3",
+    "pyasn1>=0.6.4",
     "starlette>=1.1.0",
     "requests>=2.34.2",
     "urllib3>=2.7.0",
