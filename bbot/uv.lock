@@ -3,7 +3,7 @@ revision = 3
 requires-python = "==3.14.*"
 
 [options]
-exclude-newer = "2026-07-14T21:58:56.749159725Z"
+exclude-newer = "2026-07-22T02:55:58.549641615Z"
 exclude-newer-span = "P3D"
 
 [[package]]
@@ -173,7 +173,7 @@ wheels = [
 [[package]]
 name = "bbot"
 version = "3.0.1"
-source = { git = "https://github.com/blacklanternsecurity/bbot?rev=1e01051664eb6dbb703c0542d0d3008eca89640b#1e01051664eb6dbb703c0542d0d3008eca89640b" }
+source = { git = "https://github.com/ciso360ai/bbot?rev=eabac72a46fa50897ef3f3dc5a19ad57f029c33f#eabac72a46fa50897ef3f3dc5a19ad57f029c33f" }
 dependencies = [
     { name = "ansible-core" },
     { name = "ansible-runner" },
@@ -396,7 +396,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.14.0" },
-    { name = "bbot", git = "https://github.com/blacklanternsecurity/bbot?rev=1e01051664eb6dbb703c0542d0d3008eca89640b" },
+    { name = "bbot", git = "https://github.com/ciso360ai/bbot?rev=eabac72a46fa50897ef3f3dc5a19ad57f029c33f" },
     { name = "cryptography", specifier = ">=49.0.0" },
     { name = "dnspython", specifier = ">=2.8.0" },
     { name = "fastapi" },
