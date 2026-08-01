@@ -32,7 +32,7 @@ dependencies = [
     "jsonpath-ng",
 
     # Workflow orchestration
-    "temporalio>=1.29.0,<2",
+    "temporalio>=1.31.0,<2",
 
     # Payment integration
     "stripe>=15.3.0,<16",
