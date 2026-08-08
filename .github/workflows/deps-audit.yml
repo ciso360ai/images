@@ -1,0 +1,66 @@
+name: Dependency Audit
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  # Weekly catch for newly disclosed CVEs against unchanged lockfiles
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  pip-audit:
+    name: pip-audit (${{ matrix.image }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [backend-base, bbot]
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.11.29"
+          enable-cache: true
+          cache-dependency-glob: "${{ matrix.image }}/uv.lock"
+
+      - name: Install Python (from .python-version)
+        run: uv python install
+        working-directory: ${{ matrix.image }}
+
+      - name: Export resolved deps from uv.lock
+        run: |
+          uv export \
+            --frozen \
+            --no-emit-project \
+            --no-hashes \
+            -o /tmp/${{ matrix.image }}-requirements.txt
+        working-directory: ${{ matrix.image }}
+
+      - name: Audit with pip-audit
+        # Strict mode fails on any vulnerability. Prefer bumping the package;
+        # only as a last resort add `--ignore-vuln GHSA-xxxx-xxxx-xxxx` with a
+        # written rationale.
+        #
+        # ecdsa Minerva timing attack (no patched version): pulled in
+        # transitively by python-jose. Only affects ECDSA *signing*; these
+        # images exclusively verify, never sign. Ignored under both the GHSA id
+        # and the PYSEC alias pip-audit surfaces it as.
+        run: |
+          uvx pip-audit \
+            --strict \
+            --ignore-vuln GHSA-wj6h-64fc-37mp \
+            --ignore-vuln PYSEC-2026-1325 \
+            --requirement /tmp/${{ matrix.image }}-requirements.txt
