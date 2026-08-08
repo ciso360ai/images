@@ -1,6 +1,6 @@
 # Check: https://github.com/temporalio/temporal/releases
 ARG TEMPORAL_VERSION=1.31.2
-ARG TEMPORAL_CLI=1.7.2
+ARG TEMPORAL_CLI=1.8.2
 
 # SQL schema migrations source (temporal-sql-tool at startup)
 FROM temporalio/admin-tools:${TEMPORAL_VERSION} AS temporal-admin-tools
