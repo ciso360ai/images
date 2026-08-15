@@ -106,6 +106,12 @@ fi
 
 : "${SKIP_ADD_CUSTOM_SEARCH_ATTRIBUTES:=true}"
 
+# S3 archival (only used by namespaces with an s3:// archival URI). Region is
+# mandatory for the archiver; endpoint + path style are for S3-compatible stores.
+: "${ARCHIVAL_S3_REGION:=ap-southeast-2}"
+: "${ARCHIVAL_S3_ENDPOINT:=}"
+: "${ARCHIVAL_S3_FORCE_PATH_STYLE:=false}"
+
 # === Helper functions ===
 
 die() {
@@ -381,6 +387,17 @@ sed -i "s|\${LOG_LEVEL}|${LOG_LEVEL}|g" "${CONFIG_FILE}"
 sed -i "s|\${ENABLE_ES}|${ENABLE_ES}|g" "${CONFIG_FILE}"
 sed -i "s|\${DYNAMIC_CONFIG_FILE_PATH}|${DYNAMIC_CONFIG_FILE_PATH}|g" "${CONFIG_FILE}"
 sed -i "s|\${SKIP_SCHEMA_SETUP}|${SKIP_SCHEMA_SETUP}|g" "${CONFIG_FILE}"
+
+# S3 archival. The endpoint key is a pointer in the server config: an empty value
+# would override the real AWS endpoints, so drop the line instead when unset.
+echo "Substituting archival configuration..."
+sed -i "s|\${ARCHIVAL_S3_REGION}|${ARCHIVAL_S3_REGION}|g" "${CONFIG_FILE}"
+sed -i "s|\${ARCHIVAL_S3_FORCE_PATH_STYLE}|${ARCHIVAL_S3_FORCE_PATH_STYLE}|g" "${CONFIG_FILE}"
+if [ -n "${ARCHIVAL_S3_ENDPOINT}" ]; then
+    sed -i "s|\${ARCHIVAL_S3_ENDPOINT}|${ARCHIVAL_S3_ENDPOINT}|g" "${CONFIG_FILE}"
+else
+    sed -i "/\${ARCHIVAL_S3_ENDPOINT}/d" "${CONFIG_FILE}"
+fi
 
 echo "Variable substitution complete. Starting Temporal server..."
 

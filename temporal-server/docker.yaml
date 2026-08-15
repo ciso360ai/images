@@ -139,6 +139,9 @@ clusterMetadata:
 dcRedirectionPolicy:
     policy: "noop"
 
+# Providers coexist; the namespace's archival URI scheme selects one, and each is
+# built lazily on first use. The endpoint line is dropped at startup when
+# ARCHIVAL_S3_ENDPOINT is unset — empty is not the same as absent for that key.
 archival:
   history:
     state: "enabled"
@@ -147,6 +150,11 @@ archival:
       filestore:
         fileMode: "0666"
         dirMode: "0766"
+      s3store:
+        region: ${ARCHIVAL_S3_REGION}
+        endpoint: ${ARCHIVAL_S3_ENDPOINT}
+        s3ForcePathStyle: ${ARCHIVAL_S3_FORCE_PATH_STYLE}
+        logLevel: 0
   visibility:
     state: "enabled"
     enableRead: true
@@ -154,6 +162,11 @@ archival:
       filestore:
         fileMode: "0666"
         dirMode: "0766"
+      s3store:
+        region: ${ARCHIVAL_S3_REGION}
+        endpoint: ${ARCHIVAL_S3_ENDPOINT}
+        s3ForcePathStyle: ${ARCHIVAL_S3_FORCE_PATH_STYLE}
+        logLevel: 0
 
 namespaceDefaults:
   archival:
