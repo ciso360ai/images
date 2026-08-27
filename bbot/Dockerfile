@@ -1,5 +1,5 @@
 FROM python:3.14-trixie
-# Pinned to a specific bbot dev commit for reproducibility (includes extractous->kreuzberg change)
+# bbot is pinned to a concrete release commit in pyproject.toml for reproducibility.
 
 LABEL \
     name="CISO360AI BBOT worker" \
