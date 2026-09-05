@@ -18,3 +18,9 @@ updates:
       - "/bbot"
     schedule:
       interval: "weekly"
+  # Keep SHA-pinned workflow actions current. Must be "/", not "/.github".
+  - package-ecosystem: "github-actions"
+    directories:
+      - "/"
+    schedule:
+      interval: "weekly"

@@ -21,23 +21,32 @@ jobs:
   pip-audit:
     name: pip-audit (${{ matrix.image }})
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # 10 not 5: a cold bbot sync clones the pinned git source and may build from source.
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
         image: [backend-base, bbot]
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
-          version: "0.11.29"
+          version: "0.12.10"
           enable-cache: true
           cache-dependency-glob: "${{ matrix.image }}/uv.lock"
 
       - name: Install Python (from .python-version)
         run: uv python install
+        working-directory: ${{ matrix.image }}
+
+      # Install smoke test. Export only rewrites the lock as text, and nothing
+      # builds the images on a PR, so a missing wheel, a source-build failure or
+      # a dead git rev would surface at the tag build. Runner platform only;
+      # images publish arm64 as well.
+      - name: Install from the lockfile
+        run: uv sync --frozen --no-install-project
         working-directory: ${{ matrix.image }}
 
       - name: Export resolved deps from uv.lock
