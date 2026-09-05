@@ -21,7 +21,8 @@ jobs:
   pip-audit:
     name: pip-audit (${{ matrix.image }})
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # 10 not 5: a cold bbot sync clones the pinned git source and may build from source.
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -38,6 +39,14 @@ jobs:
 
       - name: Install Python (from .python-version)
         run: uv python install
+        working-directory: ${{ matrix.image }}
+
+      # Install smoke test. Export only rewrites the lock as text, and nothing
+      # builds the images on a PR, so a missing wheel, a source-build failure or
+      # a dead git rev would surface at the tag build. Runner platform only;
+      # images publish arm64 as well.
+      - name: Install from the lockfile
+        run: uv sync --frozen --no-install-project
         working-directory: ${{ matrix.image }}
 
       - name: Export resolved deps from uv.lock
