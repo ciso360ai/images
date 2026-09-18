@@ -1,5 +1,8 @@
 # Check: https://github.com/temporalio/temporal/releases
-ARG TEMPORAL_VERSION=1.31.3
+# TEMPORAL_VERSION also selects the admin-tools image below, and Docker Hub
+# publishes only a subset of the server's patch releases. Check the tag exists
+# there too — a GitHub release alone is not enough.
+ARG TEMPORAL_VERSION=1.32.0
 ARG TEMPORAL_CLI=1.9.1
 
 # SQL schema migrations source (temporal-sql-tool at startup)
