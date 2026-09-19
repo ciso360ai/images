@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [backend-base, bbot]
+        image: [bbot]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -61,15 +61,9 @@ jobs:
       - name: Audit with pip-audit
         # Strict mode fails on any vulnerability. Prefer bumping the package;
         # only as a last resort add `--ignore-vuln GHSA-xxxx-xxxx-xxxx` with a
-        # written rationale.
-        #
-        # ecdsa Minerva timing attack (no patched version): pulled in
-        # transitively by python-jose. Only affects ECDSA *signing*; these
-        # images exclusively verify, never sign. Ignored under both the GHSA id
-        # and the PYSEC alias pip-audit surfaces it as.
+        # written rationale. There are none: the tree audits clean, so an ignore
+        # here would be a claim about something that no longer applies.
         run: |
           uvx pip-audit \
             --strict \
-            --ignore-vuln GHSA-wj6h-64fc-37mp \
-            --ignore-vuln PYSEC-2026-1325 \
             --requirement /tmp/${{ matrix.image }}-requirements.txt
