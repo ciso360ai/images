@@ -1,4 +1,7 @@
-FROM python:3.14-trixie
+# Digest-pinned; resolve a new one (must list linux/amd64 and linux/arm64, both
+# of which this image publishes) with
+#   docker buildx imagetools inspect python:<tag>
+FROM python:3.14-trixie@sha256:3df083612dec28cf1456da4f38064469561fc2e55da4ebf47e9f0110c62f80e2
 # bbot is pinned to a concrete release commit in pyproject.toml for reproducibility.
 
 LABEL \
@@ -18,8 +21,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /tmp
 
-# Install uv from the official static-binary image (pinned)
-COPY --from=ghcr.io/astral-sh/uv:0.12.10 /uv /uvx /usr/local/bin/
+# Install uv from the official static-binary image (digest-pinned — a tag can be
+# re-pushed, so the digest is what makes the build reproducible)
+COPY --from=ghcr.io/astral-sh/uv:0.12.10@sha256:2bb3ebca0a796a155094a27773d290c4b074572e6107f171d88d086682fd2500 /uv /uvx /usr/local/bin/
 
 # Copy lockfile + project metadata
 COPY pyproject.toml uv.lock .python-version ./
