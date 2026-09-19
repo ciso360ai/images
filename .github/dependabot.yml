@@ -3,6 +3,10 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
+# Each ecosystem bundles its minor/patch bumps into one PR. Majors are
+# deliberately left ungrouped so each gets its own PR and its own review — that
+# is where the breaking changes are.
+
 version: 2
 updates:
   # Maintain dependencies for Docker
@@ -11,15 +15,30 @@ updates:
       - "**/*"
     schedule:
       interval: "weekly"
+    groups:
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
   # Maintain dependencies for uv (Python projects use uv.lock)
   - package-ecosystem: "uv"
     directories:
       - "/bbot"
     schedule:
       interval: "weekly"
+    groups:
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
   # Keep SHA-pinned workflow actions current. Must be "/", not "/.github".
   - package-ecosystem: "github-actions"
     directories:
       - "/"
     schedule:
       interval: "weekly"
+    groups:
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
