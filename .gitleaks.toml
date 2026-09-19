@@ -1,0 +1,13 @@
+# gitleaks config — CISO360AI images.
+# Default ruleset plus the platform's own API-key shape, so a credential pasted into
+# a Dockerfile, entrypoint or server config is caught before it is published — these
+# files ship inside public images, so a leak here is public twice over.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "ciso360-csk"
+description = "CISO360 client secret key (CSK)"
+regex = '''csk_[A-Za-z0-9_-]{20,}'''
+keywords = ["csk_"]
