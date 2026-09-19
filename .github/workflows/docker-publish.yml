@@ -32,25 +32,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: ghcr.io/ciso360ai/backend-base
-            dockerfile: backend-base/Dockerfile
-            context: backend-base/.
-            platforms: linux/amd64,linux/arm64
           - image: ghcr.io/ciso360ai/bbot
             dockerfile: bbot/Dockerfile
             context: bbot/.
-            platforms: linux/amd64,linux/arm64
-          - image: ghcr.io/ciso360ai/temporal-server
-            dockerfile: temporal-server/Dockerfile
-            context: temporal-server/.
-            platforms: linux/amd64,linux/arm64
-          - image: ghcr.io/ciso360ai/temporal-ui
-            dockerfile: temporal-ui/Dockerfile
-            context: temporal-ui/.
-            platforms: linux/amd64,linux/arm64
-          - image: ghcr.io/ciso360ai/zitadel
-            dockerfile: zitadel/Dockerfile
-            context: zitadel/.
             platforms: linux/amd64,linux/arm64
     steps:
       - name: Checkout repository
