@@ -1,7 +1,7 @@
 # Digest-pinned; resolve a new one (must list linux/amd64 and linux/arm64, both
 # of which this image publishes) with
 #   docker buildx imagetools inspect python:<tag>
-FROM python:3.14-trixie@sha256:3df083612dec28cf1456da4f38064469561fc2e55da4ebf47e9f0110c62f80e2
+FROM python:3.15-trixie@sha256:f34e3385a59fd8de7919d46db4a38ab14c0e46928a11b59036a7ee206ac0c129
 # bbot is pinned to a concrete release commit in pyproject.toml for reproducibility.
 
 LABEL \
