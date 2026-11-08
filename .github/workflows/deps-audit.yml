@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
           version: "0.12.10"
           enable-cache: true
@@ -61,9 +61,14 @@ jobs:
       - name: Audit with pip-audit
         # Strict mode fails on any vulnerability. Prefer bumping the package;
         # only as a last resort add `--ignore-vuln GHSA-xxxx-xxxx-xxxx` with a
-        # written rationale. There are none: the tree audits clean, so an ignore
-        # here would be a claim about something that no longer applies.
+        # written rationale, and remove it once the reason no longer holds.
+        #
+        # GHSA-45c3-73f7-pv4m (dnspython <2.9.0, CPU use parsing DNS answers):
+        # bbot 3.0.x caps dnspython <2.9.0, and its module installer re-applies
+        # that cap in the image even when the lock overrides it. bbot 3.1.0
+        # drops dnspython; remove this ignore with that bump.
         run: |
           uvx pip-audit \
             --strict \
+            --ignore-vuln GHSA-45c3-73f7-pv4m \
             --requirement /tmp/${{ matrix.image }}-requirements.txt
